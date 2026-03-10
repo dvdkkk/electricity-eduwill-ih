@@ -174,7 +174,7 @@ export const ConsultationForm: React.FC = () => {
                   </div>
               ) : (
                   <form onSubmit={handleSubmit} className="space-y-3">
-                  <input type="hidden" name="_form_id" value="f8d2fc8eb31daf73ea55ef0fbdff3758" />
+                  <input type="hidden" name="_form_id" value="abc6a6a03b716a48322c948c0c60b4cf" />
                   {/* IP 주소 수집용 히든 필드 (user_ip) */}
                   <input type="hidden" name="user_ip" value={ipAddress} />
 
