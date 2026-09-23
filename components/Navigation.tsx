@@ -14,14 +14,15 @@ export const Navigation: React.FC = () => {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('http')) {
+      setIsMobileMenuOpen(false);
+      return;
+    }
     e.preventDefault();
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
     if (element) {
       const headerOffset = 80;
-      
-      // 모바일 환경(768px 미만)이고 상담신청(#consultation)일 경우 
-      // 기존 390px에서 7행(약 210px) 더 아래로 이동하여 600px 추가 스크롤
       const isMobile = window.innerWidth < 768;
       const additionalOffset = (isMobile && targetId === 'consultation') ? 600 : 0;
 
@@ -43,7 +44,7 @@ export const Navigation: React.FC = () => {
     { name: '전기기능사', href: '#course-1' },
     { name: '전기(산업)기사', href: '#course-2' },
     { name: '취업현황', href: '#employment' },
-    { name: '상담신청', href: '#consultation' },
+    { name: '상담신청', href: 'https://naver.me/GKU6ZVu8' },
   ];
 
   return (
@@ -63,6 +64,8 @@ export const Navigation: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               onClick={(e) => handleNavClick(e, link.href)}
               className={`text-lg font-medium transition-colors ${
                 link.name === '상담신청' 
@@ -74,12 +77,13 @@ export const Navigation: React.FC = () => {
             </a>
           ))}
           <a 
-            href="#consultation" 
-            onClick={(e) => handleNavClick(e, '#consultation')}
+            href="https://naver.me/GKU6ZVu8" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 bg-yellow-400 text-black px-5 py-2 rounded-full font-bold text-lg hover:bg-yellow-300 transition-transform hover:scale-105"
           >
             <FileText size={20} />
-            신청폼 작성
+            교육문의
           </a>
         </div>
 
@@ -96,6 +100,8 @@ export const Navigation: React.FC = () => {
             <a 
               key={link.name} 
               href={link.href} 
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className={`text-base font-medium py-2 border-b border-zinc-800 ${
                 link.name === '상담신청' 
                   ? 'text-yellow-400 font-bold' 
@@ -107,9 +113,11 @@ export const Navigation: React.FC = () => {
             </a>
           ))}
           <a 
-            href="#consultation" 
+            href="https://naver.me/GKU6ZVu8" 
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-yellow-400 text-black text-center py-3 rounded-md font-bold text-sm"
-            onClick={(e) => handleNavClick(e, '#consultation')}
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             무료상담 신청하기
           </a>
