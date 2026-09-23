@@ -30,27 +30,12 @@ export const Footer: React.FC = () => {
             <div className="md:text-right">
                 <p className="font-bold text-zinc-400 mb-2">고객센터</p>
                 <a 
-                  href="#consultation" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const element = document.getElementById('consultation');
-                    if (element) {
-                      const headerOffset = 80;
-                      // 모바일 환경(768px 미만)일 경우 600px 추가 스크롤 (Navigation 컴포넌트와 동일)
-                      const isMobile = window.innerWidth < 768;
-                      const additionalOffset = isMobile ? 600 : 0;
-                      
-                      const elementPosition = element.getBoundingClientRect().top;
-                      const offsetPosition = elementPosition + window.pageYOffset - headerOffset + additionalOffset;
-                      window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth"
-                      });
-                    }
-                  }}
+                  href="https://naver.me/GKU6ZVu8" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-2xl font-bold text-white hover:text-yellow-400 transition-colors inline-block"
                 >
-                  신청폼 작성
+                  교육문의
                 </a>
             </div>
         </div>
